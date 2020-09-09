@@ -16,9 +16,9 @@
         <ol class="todos"></ol>
 
         <script id="entry-template" type="text/x-handlebars-template">
-            <li data-id="{{id}}">{{text}}<span class="x">X</span></li>
+            <li class="element" data-id="{{id}}">{{text}}<span class="x">X</span></li>
 
-            <input type="text" class="hidden" data-id={{id}}>
+            <input type="text" class="input-element hidden" data-id={{id}} value="{{text}}">
 
         </script>
         <script src="js/script.js" charset="utf-8"></script>

@@ -2,22 +2,64 @@ $(document).ready(function() {
     getData();
     removeData();
     postElement();
+    putElement();
 
-    $(document).on('click', 'li', function(){
-        var elemento = $(this);
-        var idElement = elemento.attr('data-id');
-        $(this).toggle();
-        $(this).next('input').toggle().focus();
-    });
-    $(document).on('focusout','input',function(){
-        $(this).toggle();
-        $(this).prev('li').toggle();
-    });
-
-
-
-
+    showInput();
+    hideInput()
 });
+
+
+function hideInput(){
+    $(document).on('focusout','input.input-element',function(){
+        $(this).toggle();
+        $(this).prev('li.element').toggle();
+    });
+}
+
+function showInput(){
+    $(document).on('click', 'li', function(){
+        $(this).toggle('li.element');
+        $(this).next('input.input-element').toggle().focus();
+    });
+}
+
+function putElement(){
+    $(document).on('keydown','input.input-element',(function(event){
+    if (event.keyCode == 13 || event.which == 13){
+        var modElement = $(this).val();
+        var idElement = $(this).attr('data-id');
+        changeElement(modElement, idElement)
+        }
+    }));
+}
+
+function changeElement(value, id){
+    $.ajax(
+        {
+            url:'http://157.230.17.132:3001/todos/' + id,
+            method:'PUT',
+            data:{
+                text:value
+            },
+            success: function(resp){
+                $('.todos').empty();
+                getData();
+            },
+            error: function(){
+                alert('Si è verificato un errore');
+            }
+        }
+    )
+}
+
+
+function send(value, id){
+    if (event.which == 13 || event.keydown == 13 ){
+        console.log(value);
+        console.log(id);
+
+    }
+}
 
 function postElement(){
     $('button.post-element').click(function(){
