@@ -8,7 +8,10 @@ $(document).ready(function() {
         var idElement = elemento.attr('data-id');
         $(this).toggle();
         $(this).next('input').toggle().focus();
-        console.log(idElement);
+    });
+    $(document).on('focusout','input',function(){
+        $(this).toggle();
+        $(this).prev('li').toggle();
     });
 
 
