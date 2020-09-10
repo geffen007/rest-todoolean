@@ -16,12 +16,14 @@ function hideInput(){
     });
 }
 
+
 function showInput(){
     $(document).on('click', 'li.element', function(){
         $(this).toggle();
         $(this).next('input.input-element').toggle().focus();
     });
 }
+
 
 function putElement(){
     $(document).on('keydown','input.input-element', function(event){
@@ -32,6 +34,7 @@ function putElement(){
         }
     });
 }
+
 
 function changeElement(value, id){
     $.ajax(
@@ -61,12 +64,14 @@ function send(value, id){
     }
 }
 
+
 function postElement(){
     $('button.post-element').click(function(){
         var newElement = $('#new-element').val();
         createElement(newElement);
     });
 }
+
 
 function createElement(element){
     $.ajax(
@@ -87,6 +92,7 @@ function createElement(element){
     );
 }
 
+
 function removeData(){
     $(document).on('click', 'span.x', function(){
         var elemento = $(this);
@@ -94,6 +100,7 @@ function removeData(){
         deleteElement(idElement);
     });
 }
+
 
 function deleteElement(id){
     $.ajax(
