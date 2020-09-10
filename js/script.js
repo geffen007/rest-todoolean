@@ -5,7 +5,7 @@ $(document).ready(function() {
     putElement();
 
     showInput();
-    hideInput()
+    hideInput();
 });
 
 
@@ -17,20 +17,20 @@ function hideInput(){
 }
 
 function showInput(){
-    $(document).on('click', 'li', function(){
-        $(this).toggle('li.element');
+    $(document).on('click', 'li.element', function(){
+        $(this).toggle();
         $(this).next('input.input-element').toggle().focus();
     });
 }
 
 function putElement(){
-    $(document).on('keydown','input.input-element',(function(event){
+    $(document).on('keydown','input.input-element', function(event){
+        var idElement = $(this).attr('data-id');
     if (event.keyCode == 13 || event.which == 13){
         var modElement = $(this).val();
-        var idElement = $(this).attr('data-id');
         changeElement(modElement, idElement)
         }
-    }));
+    });
 }
 
 function changeElement(value, id){
